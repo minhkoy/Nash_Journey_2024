@@ -17,6 +17,18 @@ namespace CSharpAssignment_Day1.Models
         public int Age { get => DateTime.Now.Year - DateOfBirth.Year; }
         public bool IsGraduated { get; set; }
 
+        public Member() { }
+        public Member(string firstName, string lastName, string gender, DateTime dateOfBirth, string phoneNumber, string birthPlace, int age, bool isGraduated)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Gender = gender;
+            DateOfBirth = dateOfBirth;
+            PhoneNumber = phoneNumber;
+            BirthPlace = birthPlace;
+            IsGraduated = isGraduated;
+        }
+
         public override string ToString()
         {
             var result = 

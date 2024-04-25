@@ -12,7 +12,6 @@ for (int i = 1; i <= 20; i++)
     {
         FirstName = $"First name {i}",
         LastName = $"Last name {i}",
-        Age = 10 + i,
         BirthPlace = i < 15 ? $"Birth place {i}" : "Ha Noi",
         DateOfBirth = DateTime.Today.AddYears(-10 - i),
         Gender = i % 2 == 0 ? CX.Genders.Male : CX.Genders.Female,

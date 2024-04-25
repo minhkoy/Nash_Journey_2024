@@ -14,7 +14,7 @@ namespace CSharpAssignment_Day2.Models
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public string BirthPlace { get; set; }
-        public int Age { get; set; }
+        public int Age { get => DateTime.Now.Year - DateOfBirth.Year; }
         public bool IsGraduated { get; set; }
 
         public Member() { }
@@ -26,7 +26,6 @@ namespace CSharpAssignment_Day2.Models
             DateOfBirth = dateOfBirth;
             PhoneNumber = phoneNumber;
             BirthPlace = birthPlace;
-            Age = age;
             IsGraduated = isGraduated;
         }
         public override string ToString()
