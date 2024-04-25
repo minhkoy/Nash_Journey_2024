@@ -123,6 +123,7 @@ static List<Member> GetMembersWithBirthYear(List<Member> members, string compare
     List<Member> result = new();
     switch (comparer)
     {
+        // I cannot use my constants in CX for comparers here because it is not allowed in case [expression].
         case ">":
             foreach (var member in members)
             {
