@@ -1,7 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using CSharpAssignment_Day1.Helpers;
-using CSharpAssignment_Day1.Models;
+using CSharpAssignment_Day2.Helpers;
+using CSharpAssignment_Day2.Models;
 
+//Console.WriteLine("Hello, World!");
 #region Init data source
 List<Member> memberList = new();
 
@@ -23,6 +24,8 @@ for (int i = 1; i <= 20; i++)
 #endregion
 
 #region Main
+
+// Exercise 1
 var maleMembers = GetMaleMembers(memberList);
 PrintMemberListOnConsole(maleMembers, title: "LIST OF MAIL MEMBER:");
 
@@ -51,9 +54,16 @@ PrintMemberListOnConsole(membersWithBirthYearLessThan2000, title: "MEMBERS WITH 
 var firstPersonByBirthPlace = GetFirstPersonByBirthPlace(memberList, "Ha Noi");
 Console.WriteLine("FIRST PERSON BY BIRTH PLACE: \n{0}", firstPersonByBirthPlace);
 
+// Exercise 2
+var primeNumbers = await GetPrimeNumbers(1, 100);
+Console.WriteLine("PRIME NUMBERS: ");
+foreach (var primeNumber in primeNumbers)
+{
+    Console.Write($"{primeNumber} ");
+}
 #endregion
 
-#region Real logic implementations
+#region Exercise 1
 static void PrintMemberListOnConsole(List<Member> members, string title = "")
 {
     if (!string.IsNullOrEmpty(title))
@@ -62,118 +72,77 @@ static void PrintMemberListOnConsole(List<Member> members, string title = "")
     }
     foreach (var member in members)
     {
-        Console.WriteLine(member.ToString());
+        Console.WriteLine(member);
     }
 }
 static List<Member> GetMaleMembers(List<Member> members)
 {
-    List<Member> result = new();
-    foreach (var member in members)
-    {
-        if (string.Equals(member.Gender, CX.Genders.Male))
-        {
-            result.Add(member);
-        }
-    }
-    return result;
+    return members.Where(member => string.Equals(member.Gender, CX.Genders.Male)).ToList();
 }
 
 static Member? GetOldestMemberByAge(List<Member> members)
 {
-    var maxAge = 0;
-    Member? result = null;
-    foreach (var member in members)
-    {
-        if (member.Age > maxAge)
-        {
-            maxAge = member.Age;
-            result = member;
-        }
-    }
-    return result;
+    return members.MaxBy(member => member.Age);
 }
 
 static Member? GetOldestMemberByDob(List<Member> members)
 {
-    var maxDob = DateTime.Today;
-    Member? result = null;
-    foreach (var member in members)
-    {
-        if (member.DateOfBirth < maxDob)
-        {
-            maxDob = member.DateOfBirth;
-            result = member;
-        }
-    }
-    return result;
+    return members.MinBy(member => member.DateOfBirth);
 }
 
 static List<string> GetOnlyFullnameList(List<Member> members)
 {
-    List<string> result = new();
-    foreach (var member in members)
-    {
-        var fullname = string.Concat(member.LastName, " ", member.FirstName);
-        result.Add(fullname);
-    }
-    return result;
+    return members.Select(member => string.Concat(member.LastName, " ", member.FirstName)).ToList();
 }
 
 static List<Member> GetMembersWithBirthYear(List<Member> members, string comparer, int year)
 {
-    List<Member> result = new();
-    switch (comparer)
+    if (string.Equals(comparer, CX.Comparer.GreaterThan))
     {
-        case ">":
-            foreach (var member in members)
-            {
-                if (member.DateOfBirth.Year > year)
-                {
-                    result.Add(member);
-                }
-            }
-            break;
-        case "<":
-            foreach (var member in members)
-            {
-                if (member.DateOfBirth.Year < year)
-                {
-                    result.Add(member);
-                }
-            }
-            break;
-        case "=":
-            foreach (var member in members)
-            {
-                if (member.DateOfBirth.Year == year)
-                {
-                    result.Add(member);
-                }
-            }
-            break;
-        default:
-            return [];
+        return members.Where(member => member.DateOfBirth.Year > year).ToList();
     }
-    return result;
+    else if (string.Equals(comparer, CX.Comparer.LessThan))
+    {
+        return members.Where(member => member.DateOfBirth.Year < year).ToList();
+    }
+    else if (string.Equals(comparer, CX.Comparer.Equal))
+    {
+        return members.Where(member => member.DateOfBirth.Year == year).ToList();
+    }
+    else return [];
 }
 
 static Member? GetFirstPersonByBirthPlace(List<Member> members, string birthPlace)
 {
-    //Member? result = null;
-    var i = 0;
-    while (true)
+    return members.FirstOrDefault(member => string.Equals(member.BirthPlace, birthPlace));
+}
+
+#endregion
+
+#region Exercise 2
+static bool IsPrime(int number)
+{
+    if (number < 2) return false;
+    var maxToFind = Math.Sqrt(number);
+    for (int i = 2; i < maxToFind; i++)
     {
-        if (i >= members.Count)
-        {
-            break;
-        }
-        if (string.Equals(members[i].BirthPlace, birthPlace))
-        {
-            return members[i];
-        }
-        i++;
+        if (number % i == 0) return false;
     }
-    return null;
+    return true;
+}
+
+static Task<List<int>> GetPrimeNumbers(int start, int end)
+{
+    //return Enumerable.Range(start, end - start + 1).Where(number => IsPrime(number)).ToList();
+    List<int> result = new();
+    foreach (var i in Enumerable.Range(start, end - start + 1))
+    {
+        if (IsPrime(i))
+        {
+            result.Add(i);
+        }
+    }
+    return Task.FromResult(result);
 }
 
 #endregion
