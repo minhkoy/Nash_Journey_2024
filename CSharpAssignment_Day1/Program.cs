@@ -26,10 +26,10 @@ var maleMembers = GetMaleMembers(memberList);
 PrintMemberListOnConsole(maleMembers, title: "LIST OF MAIL MEMBER:");
 
 var oldestMemberByAge = GetOldestMemberByAge(memberList);
-Console.WriteLine("OLDEST MEMBER BY AGE: \n{0}", oldestMemberByAge);
+PrintMemberOnConsole(oldestMemberByAge, "OLDEST MEMBER BY AGE: ");
 
 var oldestMemberByDob = GetOldestMemberByDob(memberList);
-Console.WriteLine("OLDEST MEMBER BY DOB: \n{0}", oldestMemberByDob);
+PrintMemberOnConsole(oldestMemberByDob, "OLDEST MEMBER BY DOB: ");
 
 var onlyFullnameList = GetOnlyFullnameList(memberList);
 Console.WriteLine("ONLY FULLNAME LIST: ");
@@ -48,11 +48,23 @@ var membersWithBirthYearLessThan2000 = GetMembersWithBirthYear(memberList, CX.Co
 PrintMemberListOnConsole(membersWithBirthYearLessThan2000, title: "MEMBERS WITH BIRTH YEAR LESS THAN 2000:");
 
 var firstPersonByBirthPlace = GetFirstPersonByBirthPlace(memberList, "Ha Noi");
-Console.WriteLine("FIRST PERSON BY BIRTH PLACE: \n{0}", firstPersonByBirthPlace);
+PrintMemberOnConsole(firstPersonByBirthPlace, "FIRST PERSON BY BIRTH PLACE: ");
 
 #endregion
 
 #region Real logic implementations
+static void PrintMemberOnConsole(Member? member, string title = "")
+{
+    if (member is null)
+    {
+        return;
+    }
+    if (!string.IsNullOrEmpty(title))
+    {
+        Console.WriteLine(title);
+    }
+    Console.WriteLine(member.ToString());
+}
 static void PrintMemberListOnConsole(List<Member> members, string title = "")
 {
     if (!string.IsNullOrEmpty(title))
