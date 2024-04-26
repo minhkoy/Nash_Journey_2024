@@ -58,12 +58,9 @@ var firstPersonByBirthPlace = GetFirstPersonByBirthPlace(memberList, "Ha Noi");
 PrintMemberOnConsole(firstPersonByBirthPlace, "--5. FIRST PERSON BY BIRTH PLACE--");
 
 // Exercise 2
-var primeNumbers = await GetPrimeNumbers(0, 100);
 Console.WriteLine("--PART 2. PRIME NUMBERS FROM 0 TO 100--");
-foreach (var primeNumber in primeNumbers)
-{
-    Console.Write($"{primeNumber} ");
-}
+var tests = GetPrimeNumbersAsync(0, 100);
+await Task.WhenAll(tests);
 #endregion
 
 #region Exercise 1
@@ -141,25 +138,30 @@ static bool IsPrime(int number)
 {
     if (number < 2) return false;
     var maxToFind = Math.Sqrt(number);
-    for (int i = 2; i < maxToFind; i++)
+    for (int i = 2; i <= maxToFind; i++)
     {
         if (number % i == 0) return false;
     }
     return true;
 }
 
-static Task<List<int>> GetPrimeNumbers(int start, int end)
+static List<Task> GetPrimeNumbersAsync(int start, int end)
 {
-    //return Enumerable.Range(start, end - start + 1).Where(number => IsPrime(number)).ToList();
-    List<int> result = new();
+    List<Task> rs = new();
+    var t = Enumerable.Range(start, end - start + 1);
     foreach (var i in Enumerable.Range(start, end - start + 1))
     {
-        if (IsPrime(i))
+        rs.Add(Task.Run(() =>
         {
-            result.Add(i);
-        }
+
+            if (IsPrime(i))
+            {
+                Console.WriteLine(i);
+            }
+            
+        }));
     }
-    return Task.FromResult(result);
+    return rs;
 }
 
 #endregion
