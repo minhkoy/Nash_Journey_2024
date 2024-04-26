@@ -18,43 +18,47 @@ for (int i = 1; i <= 20; i++)
         PhoneNumber = $"03456789{i}"
     });
 }
-
+//memberList = new();
+if (memberList is null)
+{
+    return;
+}
 #endregion
 
 #region Main
 
 // Exercise 1
 var maleMembers = GetMaleMembers(memberList);
-PrintMemberListOnConsole(maleMembers, title: "LIST OF MALE MEMBER:");
+PrintMemberListOnConsole(maleMembers, title: "--1. LIST OF MALE MEMBERS--");
 
 var oldestMemberByAge = GetOldestMemberByAge(memberList);
-Console.WriteLine("OLDEST MEMBER BY AGE: \n{0}", oldestMemberByAge);
+PrintMemberOnConsole(oldestMemberByAge, "--2. OLDEST MEMBER BY AGE--");
 
 var oldestMemberByDob = GetOldestMemberByDob(memberList);
-Console.WriteLine("OLDEST MEMBER BY DATE OF BIRTH: \n{0}", oldestMemberByDob);
+PrintMemberOnConsole(oldestMemberByDob, "--2B. OLDEST MEMBER BY DOB: --");
 
 var onlyFullnameList = GetOnlyFullnameList(memberList);
-Console.WriteLine("ONLY FULLNAME LIST: ");
+Console.WriteLine("--3. ONLY FULLNAME LIST--");
 foreach (var fullname in onlyFullnameList)
 {
     Console.WriteLine(fullname);
 }
 
 var membersWithBirthYearEqualTo2000 = GetMembersWithBirthYear(memberList, CX.Comparer.Equal, 2000);
-PrintMemberListOnConsole(membersWithBirthYearEqualTo2000, title: "MEMBERS WITH BIRTH YEAR 2000:");
+PrintMemberListOnConsole(membersWithBirthYearEqualTo2000, title: "--4. MEMBERS WITH BIRTH YEAR 2000--");
 
 var membersWithBirthYearGreaterThan2000 = GetMembersWithBirthYear(memberList, CX.Comparer.GreaterThan, 2000);
-PrintMemberListOnConsole(membersWithBirthYearGreaterThan2000, title: "MEMBERS WITH BIRTH YEAR GREATER THAN 2000:");
+PrintMemberListOnConsole(membersWithBirthYearGreaterThan2000, title: "--4B. MEMBERS WITH BIRTH YEAR GREATER THAN 2000--");
 
 var membersWithBirthYearLessThan2000 = GetMembersWithBirthYear(memberList, CX.Comparer.LessThan, 2000);
-PrintMemberListOnConsole(membersWithBirthYearLessThan2000, title: "MEMBERS WITH BIRTH YEAR LESS THAN 2000:");
+PrintMemberListOnConsole(membersWithBirthYearLessThan2000, title: "--4C. MEMBERS WITH BIRTH YEAR LESS THAN 2000--");
 
 var firstPersonByBirthPlace = GetFirstPersonByBirthPlace(memberList, "Ha Noi");
-Console.WriteLine("FIRST PERSON BY BIRTH PLACE: \n{0}", firstPersonByBirthPlace);
+PrintMemberOnConsole(firstPersonByBirthPlace, "--5. FIRST PERSON BY BIRTH PLACE--");
 
 // Exercise 2
 var primeNumbers = await GetPrimeNumbers(1, 100);
-Console.WriteLine("PRIME NUMBERS: ");
+Console.WriteLine("--PART 2. PRIME NUMBERS FROM 1 TO 100--");
 foreach (var primeNumber in primeNumbers)
 {
     Console.Write($"{primeNumber} ");
@@ -62,6 +66,18 @@ foreach (var primeNumber in primeNumbers)
 #endregion
 
 #region Exercise 1
+static void PrintMemberOnConsole(Member? member, string title = "")
+{
+    if (!string.IsNullOrEmpty(title))
+    {
+        Console.WriteLine(title);
+    }
+    if (member is null)
+    {
+        return;
+    }
+    Console.WriteLine(member.ToString());
+}
 static void PrintMemberListOnConsole(List<Member> members, string title = "")
 {
     if (!string.IsNullOrEmpty(title))

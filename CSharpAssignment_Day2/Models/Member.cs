@@ -32,8 +32,8 @@ namespace CSharpAssignment_Day2.Models
         public override string ToString()
         {
             var result =
-                $"First name: {FirstName}, Last name: {LastName}, Gender: {Gender}, DateOfBirth: {DateOfBirth.ToString("dd/MM/yyyy")}, " +
-                $"Phone number: {PhoneNumber}, Birth Place: {BirthPlace}, Age: {Age}, Is Graduated: {IsGraduated}";
+                $"First name: {FirstName} | Last name: {LastName} | Gender: {Gender} | DateOfBirth: {DateOfBirth.ToString("dd/MM/yyyy")} | " +
+                $"Birth Place: {BirthPlace} | Age: {Age}";
             return result;
         }
     }
