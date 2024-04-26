@@ -43,6 +43,7 @@ foreach (var fullname in onlyFullnameList)
 {
     Console.WriteLine(fullname);
 }
+Console.WriteLine();
 
 var membersWithBirthYearEqualTo2000 = GetMembersWithBirthYear(memberList, CX.Comparer.Equal, 2000);
 PrintMemberListOnConsole(membersWithBirthYearEqualTo2000, title: "--4. MEMBERS WITH BIRTH YEAR 2000--");
@@ -77,6 +78,7 @@ static void PrintMemberOnConsole(Member? member, string title = "")
         return;
     }
     Console.WriteLine(member.ToString());
+    Console.WriteLine();
 }
 static void PrintMemberListOnConsole(List<Member> members, string title = "")
 {
@@ -88,6 +90,7 @@ static void PrintMemberListOnConsole(List<Member> members, string title = "")
     {
         Console.WriteLine(member);
     }
+    Console.WriteLine();
 }
 static List<Member> GetMaleMembers(List<Member> members)
 {
