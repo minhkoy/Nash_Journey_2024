@@ -58,8 +58,8 @@ var firstPersonByBirthPlace = GetFirstPersonByBirthPlace(memberList, "Ha Noi");
 PrintMemberOnConsole(firstPersonByBirthPlace, "--5. FIRST PERSON BY BIRTH PLACE--");
 
 // Exercise 2
-var primeNumbers = await GetPrimeNumbers(1, 100);
-Console.WriteLine("--PART 2. PRIME NUMBERS FROM 1 TO 100--");
+var primeNumbers = await GetPrimeNumbers(0, 100);
+Console.WriteLine("--PART 2. PRIME NUMBERS FROM 0 TO 100--");
 foreach (var primeNumber in primeNumbers)
 {
     Console.Write($"{primeNumber} ");
