@@ -25,13 +25,13 @@ for (int i = 1; i <= 20; i++)
 
 // Exercise 1
 var maleMembers = GetMaleMembers(memberList);
-PrintMemberListOnConsole(maleMembers, title: "LIST OF MAIL MEMBER:");
+PrintMemberListOnConsole(maleMembers, title: "LIST OF MALE MEMBER:");
 
 var oldestMemberByAge = GetOldestMemberByAge(memberList);
 Console.WriteLine("OLDEST MEMBER BY AGE: \n{0}", oldestMemberByAge);
 
 var oldestMemberByDob = GetOldestMemberByDob(memberList);
-Console.WriteLine("OLDEST MEMBER BY DOB: \n{0}", oldestMemberByDob);
+Console.WriteLine("OLDEST MEMBER BY DATE OF BIRTH: \n{0}", oldestMemberByDob);
 
 var onlyFullnameList = GetOnlyFullnameList(memberList);
 Console.WriteLine("ONLY FULLNAME LIST: ");
