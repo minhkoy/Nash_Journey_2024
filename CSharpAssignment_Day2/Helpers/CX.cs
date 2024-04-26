@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpAssignment_Day1.Helpers
+namespace CSharpAssignment_Day2.Helpers
 {
     /// <summary>
     /// Constant extension
