@@ -114,14 +114,15 @@ static List<Member> GetMembersWithBirthYear(List<Member> members, string compare
     switch (comparer)
     {
         case CX.Comparer.GreaterThan:
-            return members.Where(member => member.DateOfBirth.Year > year).ToList();
+        return members.Where(member => member.DateOfBirth.Year > year).ToList();
         case CX.Comparer.LessThan:
-            return members.Where(member => member.DateOfBirth.Year < year).ToList();
+        return members.Where(member => member.DateOfBirth.Year < year).ToList();
         case CX.Comparer.Equal:
-            return members.Where(member => member.DateOfBirth.Year == year).ToList();
+        return members.Where(member => member.DateOfBirth.Year == year).ToList();
         default:
             return [];
     }
+    else return [];
 }
 
 static Member? GetFirstPersonByBirthPlace(List<Member> members, string birthPlace)
@@ -152,10 +153,10 @@ static List<Task> GetPrimeNumbersAsync(int start, int end)
         rs.Add(Task.Run(() =>
         {
 
-            if (IsPrime(i))
-            {
+        if (IsPrime(i))
+        {
                 Console.WriteLine(i);
-            }
+        }
             
         }));
     }
