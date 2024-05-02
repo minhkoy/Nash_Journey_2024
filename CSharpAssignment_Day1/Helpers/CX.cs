@@ -13,15 +13,15 @@ namespace CSharpAssignment_Day1.Helpers
     {
         public class Genders
         {
-            public static string Male = "Male";
-            public static string Female = "Female";
+            public const string Male = "Male";
+            public const string Female = "Female";
         }
 
         public class Comparer
         {
-            public static string GreaterThan = ">";
-            public static string LessThan = "<";
-            public static string Equal = "=";
+            public const string GreaterThan = ">";
+            public const string LessThan = "<";
+            public const string Equal = "=";
         }
     }
 }
