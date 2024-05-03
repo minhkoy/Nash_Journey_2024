@@ -24,11 +24,13 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+//Test Get methods, which will not contain any body.
 app.MapGet("/GetTest", () => "Hello World!");
 app.MapGet("/GetTestWithParams", ([AsParameters]GetQueryString query, HttpContext context) =>
 {
     return context?.Request.QueryString;
 });
+//Test Post methods
 app.MapPost("/PostLogin", ([FromBody] LoginRequest request) => "Please check the logging");
 
 app.UseLoggingMiddleware();

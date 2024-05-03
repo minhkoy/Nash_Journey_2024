@@ -30,12 +30,12 @@ namespace Day3.Root.Middlewares
 
             var requestInfo = @$"
 Requested at: {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")}
-Schema: {request.Scheme}
+Schema: {request.Scheme ?? "Empty"}
 Host: {request.Host}
 Path: {request.Path}
 Query string: {request.QueryString}
-Method: {request.Method}
-Body: {body}
+Method: {request.Method ?? "Unknown"}
+Body: {body ?? "Empty"}
 ";
             _logger.LogInformation(requestInfo);
 
@@ -44,12 +44,19 @@ Body: {body}
             await _next(httpContext);
         }
 
+        /// <summary>
+        /// Write request info to file, which is located in the logger folder.
+        /// Request info are written to a file named by the date of the request.
+        /// </summary>
+        /// <param name="requestInfo"></param>
+        /// <returns></returns>
         private async Task WriteToFile(string requestInfo)
         {
             string dirPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!;
             var loggerDirPath = Path.Combine(dirPath, "logger");
             if (!Directory.Exists(loggerDirPath))
             {
+                // Create the logger directory if it does not exist
                 Directory.CreateDirectory(loggerDirPath);
             }
             var filePath = Path.Combine(dirPath, $"logger\\{DateTime.Now.ToString("ddMMyyyy")}.txt");
