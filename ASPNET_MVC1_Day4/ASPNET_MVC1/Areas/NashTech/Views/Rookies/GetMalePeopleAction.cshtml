@@ -1,0 +1,49 @@
+﻿@using ASPNET_MVC.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Person>
+@* @{
+    var malePeople = ViewData["malePeople"] as List<Person>;
+    if (malePeople is null)
+    {
+        malePeople = new List<Person>();
+    }
+} *@
+
+<h1 class="text-info">Male people list</h1>
+<h1>There are @Model.Count people who are males</h1>
+    <table class="table table-hover">  
+        <thead>
+            <tr class="table-primary">
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Date of birth</th>
+                <th>Phone number</th>
+                <th>Birth place</th>
+                <th>Age</th>
+                <th>Is Graduated</th>
+            </tr>
+        </thead>
+        <tbody>
+        @{
+            foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                    <td>@person.Gender</td>
+                    <td>@person.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                    <td>@person.PhoneNumber</td>
+                    <td>@person.BirthPlace</td>
+                    <td>@person.Age</td>
+                    <td>
+                        <input class="form-check-input" type="checkbox" disabled checked=@(person.IsGraduated) />
+                    </td>                    
+                </tr>
+            }
+
+        }
+        </tbody>
+    </table>

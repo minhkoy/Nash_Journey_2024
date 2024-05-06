@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<string>
+@{
+}
+
+<h1 class="text-info">People's name list</h1>
+<table class="table table-hover">
+    <thead class="table-primary">
+        <tr>
+            <th>No.</th>
+            <th>Full Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+            {
+            <tr>
+                <td>@(i + 1)</td>
+                <td>@Model[i]</td>
+            </tr>
+            }
+    </tbody>
+</table>
