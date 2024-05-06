@@ -34,22 +34,22 @@ namespace ASPNET_MVC.Models.Repositories
         }
         public void Add(Person person)
         {
-            throw new NotImplementedException();
+            _peopleList.Add(person);
         }
 
-        public void Delete(int id)
+        public void Delete(Person person)
         {
-            throw new NotImplementedException();
+            _peopleList.Remove(person);
         }
 
         public Person Get(int id)
         {
-            throw new NotImplementedException();
+            return new Person();
         }
 
         public void Update(Person person)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

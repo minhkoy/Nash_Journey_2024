@@ -11,7 +11,7 @@ namespace ASPNET_MVC.Models.Repositories
     {
         IEnumerable<Person> GetEnumerable();
         void Add(Person person);
-        void Delete(int id);
+        void Delete(Person person);
         void Update(Person person);
         Person Get(int id);
     }

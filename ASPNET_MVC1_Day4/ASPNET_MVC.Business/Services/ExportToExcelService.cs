@@ -22,7 +22,6 @@ namespace ASPNET_MVC.Business.Services
 
                 return stream;                
             }
-            throw new NotImplementedException();
         }
     }
 }
