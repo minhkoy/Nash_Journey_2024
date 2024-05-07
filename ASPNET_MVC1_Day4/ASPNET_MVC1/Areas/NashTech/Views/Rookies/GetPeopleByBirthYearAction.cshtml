@@ -32,12 +32,12 @@
 
 <div class="d-flex flex-row justify-content-between">
     <h1 class="text-info">There are (is) @Model.Count people who was born @comparerMeaning </h1>
-    <form class="dropdown" asp-action="GetPeopleByBirthYearAction" asp->
+    <form class="dropdown" asp-action="GetPeopleByBirthYearAction">
         <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Comparer
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Earlier than (<)></a></li>
+            <li><a class="dropdown-item" href="#">Earlier than (<)</a></li>
             <li><a class="dropdown-item" href="#">Born in (=)</a></li>
             <li><a class="dropdown-item" href="#">Later than (>)</a></li>
         </ul>
