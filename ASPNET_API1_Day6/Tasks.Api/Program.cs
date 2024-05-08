@@ -1,3 +1,4 @@
+using Tasks.Api.Middlewares;
 using Tasks.UseCases;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,5 +25,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseErrorHandlingMiddleware();
 
 app.Run();
