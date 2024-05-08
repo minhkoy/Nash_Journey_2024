@@ -10,13 +10,14 @@ namespace ASPNET_MVC.Models.Repositories
 {
     public class PersonRepository : IPersonRepository
     {
-        private List<Person> _peopleList = new List<Person>();
+        private static List<Person> _peopleList = new List<Person>();
         public PersonRepository()
         {
             for (int i = 1; i <= 20; i++)
             {
                 _peopleList.Add(new()
                 {
+                    ID = Guid.NewGuid(),
                     FirstName = $"First name {i}",
                     LastName = $"Last name {i}",
                     BirthPlace = i < 15 ? $"Birth place {i}" : "Ha Noi",
@@ -37,19 +38,30 @@ namespace ASPNET_MVC.Models.Repositories
             _peopleList.Add(person);
         }
 
-        public void Delete(Person person)
+        public bool Delete(Person person)
         {
-            _peopleList.Remove(person);
+            return _peopleList.Remove(person);
         }
 
-        public Person Get(int id)
+        public Person Get(Guid id)
         {
-            return new Person();
+            var person = _peopleList.FirstOrDefault(x => Equals(x.ID, id));
+            if (person is null)
+            {
+                return new Person();
+            }
+            return person;
         }
 
-        public void Update(Person person)
+        public void Update(Person updatedPerson)
         {
-            
+            var person = _peopleList.FirstOrDefault(x => Equals(x.ID, updatedPerson.ID));
+            if (person is null)
+            {
+                return;
+            }
+            var index = _peopleList.IndexOf(person);
+            _peopleList[index] = updatedPerson;
         }
     }
 }

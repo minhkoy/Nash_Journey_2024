@@ -20,3 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.text-tile {
+  font-size: 30px;
+  color: deepskyblue;
+}

@@ -27,6 +27,6 @@ app.UseAuthorization();
 //Exercise 6
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=NashTech}/{controller=Rookies}/{action=Index}/{id?}");
+    pattern: "{area=NashTech}/{controller=Rookies}/{action=GetListPeople}/{id?}");
 
 app.Run();

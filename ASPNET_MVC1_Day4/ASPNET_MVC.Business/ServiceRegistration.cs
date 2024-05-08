@@ -9,7 +9,7 @@ namespace ASPNET_MVC.Business
     {
         public static void AddBusinessServices(this IServiceCollection services)
         {
-            services.AddTransient<IPersonRepository, PersonRepository>();
+            services.AddSingleton<IPersonRepository, PersonRepository>();
             services.AddTransient<IExportToExcelService, ExportToExcelService>();
             services.AddTransient<IPersonService, PersonService>();
         }

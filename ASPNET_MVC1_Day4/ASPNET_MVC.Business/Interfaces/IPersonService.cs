@@ -9,6 +9,12 @@ namespace ASPNET_MVC.Business.Interfaces
 {
     public interface IPersonService
     {
+        Person Create(Person person);
+
+        Person GetById(Guid id);
+        Person Update(Person person);
+        bool Delete(Guid id);
+        List<Person> GetListPeople(int page, int pageSize);
         List<Person> GetPeopleByGender(string gender);
         Person? GetOldestPersonByAge();
         Person? GetOldestPersonByDob();

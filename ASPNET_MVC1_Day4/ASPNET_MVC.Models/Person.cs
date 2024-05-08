@@ -2,6 +2,7 @@
 {
     public class Person
     {
+        public Guid ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
@@ -23,6 +24,11 @@
                 $"First name: {FirstName}, Last name: {LastName}, Gender: {Gender}, DateOfBirth: {DateOfBirth.ToString("dd/MM/yyyy")}, " +
                 $"Phone number: {PhoneNumber}, Birth Place: {BirthPlace}, Age: {Age}, Is Graduated: {IsGraduated}";
             return result;
+        }
+
+        public string GetFullName()
+        {
+            return $"{LastName} {FirstName}";
         }
     }
 }

@@ -1,0 +1,74 @@
+﻿@using ASPNET_MVC.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Person>
+
+@{
+    ViewData["Title"] = "Get people list";
+    var page = ViewBag.Page as int?;
+}
+<div class="d-flex flex-row justify-content-between mb-3">
+    <h2 class="text-info">People list - Showing @Model.Count people, page @ViewBag.Page</h2>
+    <div class="d-flex flex-row gap-2">
+        <a class="btn btn-success" asp-action="Create" asp-controller="Rookies">Create</a>
+        <a class="btn btn-info" asp-action="ExportPeopleListToExcelAction">Export</a>
+    </div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr class="table-primary">
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Date of birth</th>
+            <th>Phone number</th>
+            <th>Birth place</th>
+            <th>Age</th>
+            <th>Is Graduated</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.FirstName</td>
+                    <td>@person.LastName</td>
+                    <td>@person.Gender</td>
+                    <td>@person.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                    <td>@person.PhoneNumber</td>
+                    <td>@person.BirthPlace</td>
+                    <td>@person.Age</td>
+                    <td>
+                        <input class="form-check-input" type="checkbox" disabled checked=@(person.IsGraduated) />
+                    </td>
+                    <td class="d-flex flex-row gap-2">
+                        <a class="btn btn-info" asp-action="Details" asp-route-id=@person.ID>Details</a>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id=@person.ID>
+                            <i class="bi bi-pencil-fill"></i> Update
+                        </a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id=@person.ID>
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+<div class="d-flex flex-row justify-content-center gap-3">
+    @if (page > 1)
+    {
+        <a class="btn btn-secondary" asp-action="GetListPeople" asp-route-page=@(page - 1)> Previous </a>
+     
+    }
+    <button class="btn btn-primary">Page @(page) </button>
+    @if (Model.Count == ViewBag.PageSize)
+    {
+        <a class="btn btn-secondary" asp-action="GetListPeople" asp-route-page=@(page + 1)> Next </a>
+    }
+</div>
