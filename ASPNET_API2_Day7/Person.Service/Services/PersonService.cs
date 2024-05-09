@@ -24,7 +24,7 @@ namespace Person.Service.Services
         }
         public PersonDTO Create(CreatePersonRequest person)
         {
-            if (person is null)// || !person.GetValidationResult())
+            if (person is null || !person.GetValidationResult())
             {
                 throw new ValidationException("The request model must not be empty!");
             }
@@ -81,7 +81,7 @@ namespace Person.Service.Services
 
         public PersonDTO? Update(UpdatePersonRequest person)
         {
-            if (person is null || string.IsNullOrEmpty(person.Id))
+            if (person is null || !person.GetValidationResult())
             {
                 throw new ValidationException("Validation fails. Id is required.");
             }
