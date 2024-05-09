@@ -17,11 +17,11 @@ namespace Tasks.Api.Middlewares
             _logger = logger;
         }
 
-        public Task Invoke(HttpContext httpContext)
+        public async Task Invoke(HttpContext httpContext)
         {
             try
             {
-                return _next(httpContext);
+                await _next(httpContext);
             }
             catch (Exception ex)
             {
@@ -29,10 +29,10 @@ namespace Tasks.Api.Middlewares
                 _logger.LogError(ex, ex.Message);
                 if (ex is ValidationException)
                 {
-                    return httpContext.Response.WriteAsync(ex.Message);
+                    await httpContext.Response.WriteAsync(ex.Message);
                 }
 
-                return httpContext.Response.WriteAsync("There is some errors occured. Please try again later.");
+                await httpContext.Response.WriteAsync("There is some errors occured. Please try again later.");
             }
         }
     }

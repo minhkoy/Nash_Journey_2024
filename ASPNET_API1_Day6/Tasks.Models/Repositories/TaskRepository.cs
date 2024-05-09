@@ -27,7 +27,7 @@ namespace Tasks.Models.Repositories
             TheTask newTask = new TheTask
             {
                 Title = taskRequest.Title,
-                IsCompleted = taskRequest.IsCompleted
+                IsCompleted = taskRequest.IsCompleted!.Value
             };
             _taskList.Add(newTask);
             return new TaskDTO
@@ -43,7 +43,7 @@ namespace Tasks.Models.Repositories
             tasks.ForEach(task => _taskList.Add(new TheTask
             {
                 Title = task.Title,
-                IsCompleted = task.IsCompleted
+                IsCompleted = task.IsCompleted!.Value
             }));
             return _taskList.Select(t => new TaskDTO
             {
@@ -97,7 +97,7 @@ namespace Tasks.Models.Repositories
                 return null;
             }
             taskToUpdate.Title = task.Title;
-            taskToUpdate.IsCompleted = task.IsCompleted;
+            taskToUpdate.IsCompleted = task.IsCompleted!.Value;
             return new TaskDTO
             {
                 Id = taskToUpdate.Id,

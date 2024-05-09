@@ -8,7 +8,12 @@ namespace Tasks.Models.Requests.Tasks
 {
     public class CreateTaskRequest
     {
-        public string Title { get; set; }
-        public bool IsCompleted { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public bool? IsCompleted { get; set; }
+        public bool GetValidationResult()
+        {
+            if (string.IsNullOrWhiteSpace(Title) || !IsCompleted.HasValue) return false;
+            return true;
+        }
     }
 }
